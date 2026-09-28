@@ -30,3 +30,7 @@ npm run format   # auto-format
 ## Deployment
 
 Uses `@sveltejs/adapter-auto`. Swap in a specific [adapter](https://svelte.dev/docs/kit/adapters) for your hosting target if needed.
+
+## AI agents
+
+See `AGENTS.md`. Claude Code users can run `/svelte-task <task>` (defined in `.claude/commands/svelte-task.md`), which requires the [Svelte MCP server](https://svelte.dev/docs/ai/overview).
