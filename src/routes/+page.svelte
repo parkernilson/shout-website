@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { site, signupConsent, confirmationMessage } from '$lib/config';
+	import { site, signupConsent, verbalScript, confirmationMessage } from '$lib/config';
 </script>
 
 <svelte:head><title>{site.name} — Community SMS Announcements</title></svelte:head>
@@ -15,7 +15,9 @@
 	<h2 class="mb-3 text-xl font-semibold">How to sign up</h2>
 	<ol class="mb-4 list-decimal space-y-2 pl-5">
 		<li>
-			Write your name and mobile number on a {site.name} sign-up sheet at a community gathering.
+			Give {site.operator} your name and mobile number, either by adding them to a {site.name} sign-up
+			sheet (paper or online) or by telling {site.operator} in person after hearing the sign-up statement
+			below.
 		</li>
 		<li>
 			You'll get one text from <strong>{site.phoneNumber}</strong> asking you to confirm. Reply
@@ -28,9 +30,14 @@
 		<a href={resolve('/privacy')} class="underline">Privacy Policy</a>.
 	</p>
 
-	<h3 class="mb-2 font-semibold">Consent statement on the sign-up sheet</h3>
+	<h3 class="mb-2 font-semibold">Consent statement on the sign-up sheet (paper or online)</h3>
 	<blockquote class="mb-4 border-l-4 border-gray-300 pl-4 text-sm text-gray-700">
 		{signupConsent}
+	</blockquote>
+
+	<h3 class="mb-2 font-semibold">Statement read aloud when signing up in person</h3>
+	<blockquote class="mb-4 border-l-4 border-gray-300 pl-4 text-sm text-gray-700">
+		{verbalScript}
 	</blockquote>
 
 	<h3 class="mb-2 font-semibold">Confirmation text you'll receive</h3>

@@ -1,6 +1,6 @@
 # Shout
 
-Shout is a simple SMS announcement service for the local community. Residents sign up on a paper sign-up sheet, confirm by replying **YES** to a confirmation text, and can opt out at any time by replying **STOP**.
+Shout is a simple SMS announcement service for the local community. Residents sign up on a paper or online sign-up sheet or verbally in person, confirm by replying **YES** to a confirmation text, and can opt out at any time by replying **STOP**.
 
 This repo contains the Shout website, built with SvelteKit, TypeScript, and Tailwind CSS.
 
@@ -23,20 +23,22 @@ npm run format   # auto-format
 
 ## Project structure
 
-- `src/routes/+page.svelte` — landing page (sign-up process, sign-up sheet consent wording, confirmation text, how to opt out)
+- `src/routes/+page.svelte` — landing page (sign-up process, sign-up sheet consent wording, verbal sign-up script, confirmation text, how to opt out)
 - `src/routes/privacy/` — privacy policy
 - `src/routes/terms/` — terms and conditions
 - `src/routes/+layout.svelte` — shared header/footer; `+layout.ts` disables SSR (client-side rendered) and prerenders each route's HTML shell
-- `src/lib/config.ts` — site details (operator, toll-free number, contact email, confirm keyword, message frequency, last-updated date), plus the sign-up sheet consent statement and the confirmation text. Contact info on the site is email-only; never add a personal phone number.
+- `src/lib/config.ts` — site details (operator, toll-free number, contact email, confirm keyword, message frequency, last-updated date), plus the sign-up sheet consent statement (`signupConsent`), the verbal sign-up script (`verbalScript`), and the confirmation text (`confirmationMessage`). Contact info on the site is email-only; never add a personal phone number.
 
 ## SMS opt-in flow
 
-1. **Sign-up sheet (written opt-in).** People write their name and mobile number on a paper sheet printed with the consent statement from `signupConsent` in `src/lib/config.ts`.
-2. **Confirmation text.** Each number gets one message (`confirmationMessage`) from the toll-free number +1 (844) 493-3651 asking them to reply **YES**. Nothing else is sent until they reply.
+1. **Sign-up.** People give their name and mobile number in one of two ways:
+   - **Sign-up sheet (paper or online).** The sheet shows the consent statement from `signupConsent` in `src/lib/config.ts`.
+   - **Verbally, in person.** The operator reads `verbalScript` aloud first, then records the name, number, date, and that the script was read.
+2. **Confirmation text.** However the number was collected, it gets one message (`confirmationMessage`) from the toll-free number +1 (844) 493-3651 asking the person to reply **YES**. Nothing else is sent until they reply.
 3. **YES reply.** Requires **two-way SMS** to be enabled on the number in AWS End User Messaging so replies reach an SNS topic; only numbers that reply YES get announcements. Keep records of sign-up dates and YES replies.
 4. **Opt-out.** On US toll-free numbers, **STOP** and **UNSTOP** are handled by the carriers automatically and can't be customized. Configure a **HELP** response in AWS that includes the contact email.
 
-If you change the sign-up wording, update the printed sheet, `config.ts`, and the AWS toll-free registration together.
+If you change the sign-up wording, update the paper and online sheets, the verbal script, `config.ts`, and the AWS toll-free registration together.
 
 - `static/` — static assets
 

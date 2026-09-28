@@ -15,9 +15,10 @@
 
 	<h2 class="pt-2 text-xl font-semibold">Information we collect</h2>
 	<p>
-		We collect only the name and mobile phone number you write on the sign-up sheet, and a record of
-		your consent and opt-out requests (such as the date you signed up, your {site.confirmKeyword} reply,
-		or a STOP reply). Paper sign-up sheets are kept privately by {site.operator}.
+		We collect only the name and mobile phone number you give us, whether on a paper or online
+		sign-up sheet or in person, and a record of your consent and opt-out requests (such as how and
+		when you signed up, your {site.confirmKeyword} reply, or a STOP reply). Sign-up sheets and records
+		are kept privately by {site.operator}.
 	</p>
 
 	<h2 class="pt-2 text-xl font-semibold">How we use it</h2>

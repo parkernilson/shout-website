@@ -18,9 +18,11 @@
 
 	<h2 class="pt-2 text-xl font-semibold">Opting in</h2>
 	<p>
-		You opt in by writing your mobile number on a {site.name} sign-up sheet, which displays the consent
-		statement shown on our <a href={resolve('/')} class="underline">home page</a>. We then send one
-		text from {site.phoneNumber} asking you to reply
+		You opt in by giving us your mobile number in one of two ways: adding it to a {site.name} sign-up
+		sheet (paper or online) that displays our consent statement, or telling {site.operator} in person
+		after hearing our sign-up statement read aloud. Both statements are shown on our
+		<a href={resolve('/')} class="underline">home page</a>. Either way, we then send one text from {site.phoneNumber}
+		asking you to reply
 		<strong>{site.confirmKeyword}</strong>. Only after you reply {site.confirmKeyword} will you receive
 		recurring announcement and reminder messages at that number. If you don't reply, we won't text you
 		again. Consent is not a condition of any purchase.
