@@ -4,7 +4,7 @@ Guidance for AI agents working in this repo.
 
 ## Project
 
-Shout is a simple SMS announcement service for the local community: users opt in to receive announcements and opt out by texting STOP. This repo is its SvelteKit website (Svelte 5, TypeScript, Tailwind CSS 4). See `README.md` for commands and structure.
+Shout is a simple SMS announcement service for the local community: users opt in via a paper sign-up sheet, confirm by replying YES to a confirmation text (two-way SMS on AWS), and opt out by texting STOP. This repo is its SvelteKit website (Svelte 5, TypeScript, Tailwind CSS 4). The site is client-side rendered (`ssr = false`) and built with `adapter-static`. Pages: landing (`/`), `/privacy`, `/terms`. Shared details (toll-free number, contact email, confirm keyword, sign-up sheet consent statement, confirmation text) live in `src/lib/config.ts`; see "SMS opt-in flow" in `README.md`. See `README.md` for commands and structure.
 
 ## Rules
 
@@ -12,8 +12,10 @@ Shout is a simple SMS announcement service for the local community: users opt in
 - Keep things simple; this is a small project.
 - Before finishing, run `npm run check` and `npm run lint` (use `npm run format` to fix formatting).
 - Never remove or obscure the STOP opt-out instructions; clear opt-in/opt-out wording is required for SMS compliance.
+- The privacy policy and terms back the AWS toll-free number verification. Keep the required disclosures: opt-in method (sign-up sheet + YES confirmation), message frequency, "message and data rates may apply", HELP/STOP instructions, contact info, and the statement that mobile/opt-in data is not shared with third parties for marketing.
 
 # Tools
+
 You are able to use the Svelte MCP server, where you have access to comprehensive Svelte 5 and SvelteKit documentation. Here's how to use the available tools effectively:
 
 ## Available Svelte MCP Tools:
@@ -37,4 +39,3 @@ You MUST use this tool whenever writing Svelte code before sending it to the use
 
 Generates a Svelte Playground link with the provided code.
 After completing the code, ask the user if they want a playground link. Only call this tool after user confirmation and NEVER if code was written to files in their project.
-

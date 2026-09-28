@@ -1,16 +1,16 @@
 {
-  "mcpServers": {
-    "sveltejs": {
-      "command": "npx",
-      "args": ["-y", "@sveltejs/mcp"],
-      "lifecycle": "lazy",
-      "requestTimeoutMs": 600000
-    },
-    "sveltejs-proxy": {
-      "type": "sse",
-      "url": "http://host.docker.internal:8008/sse",
-      "lifecycle": "lazy",
-      "requestTimeoutMs": 600000
-    }
-  }
+	"mcpServers": {
+		"sveltejs": {
+			"command": "npx",
+			"args": ["-y", "@sveltejs/mcp"],
+			"lifecycle": "lazy",
+			"requestTimeoutMs": 600000
+		},
+		"sveltejs-proxy": {
+			"type": "sse",
+			"url": "http://host.docker.internal:8008/sse",
+			"lifecycle": "lazy",
+			"requestTimeoutMs": 600000
+		}
+	}
 }
