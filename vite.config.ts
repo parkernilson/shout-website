@@ -14,8 +14,8 @@ export default defineConfig({
 			},
 
 			// Static, client-side rendered site. Every route is emitted as its own HTML file,
-			// with 200.html as the SPA fallback. See https://svelte.dev/docs/kit/single-page-apps
-			adapter: adapter({ fallback: '200.html' })
+			// with 404.html as the SPA fallback (GitHub Pages serves it for unknown paths). See https://svelte.dev/docs/kit/single-page-apps
+			adapter: adapter({ fallback: '404.html' })
 		})
 	]
 });

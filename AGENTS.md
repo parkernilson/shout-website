@@ -4,7 +4,7 @@ Guidance for AI agents working in this repo.
 
 ## Project
 
-Shout is a simple SMS announcement service for the local community: users opt in via a paper sign-up sheet, confirm by replying YES to a confirmation text (two-way SMS on AWS), and opt out by texting STOP. This repo is its SvelteKit website (Svelte 5, TypeScript, Tailwind CSS 4). The site is client-side rendered (`ssr = false`) and built with `adapter-static`. Pages: landing (`/`), `/privacy`, `/terms`. Shared details (toll-free number, contact email, confirm keyword, sign-up sheet consent statement, confirmation text) live in `src/lib/config.ts`; see "SMS opt-in flow" in `README.md`. See `README.md` for commands and structure.
+Shout is a simple SMS announcement service for the local community: users opt in via a paper sign-up sheet, confirm by replying YES to a confirmation text (two-way SMS on AWS), and opt out by texting STOP. This repo is its SvelteKit website (Svelte 5, TypeScript, Tailwind CSS 4). The site is client-side rendered (`ssr = false`) and built with `adapter-static` and deployed to GitHub Pages (custom domain `shout.parkernilson.dev`) by `.github/workflows/deploy.yml` on every push to `main`. Pages: landing (`/`), `/privacy`, `/terms`. Shared details (toll-free number, contact email, confirm keyword, sign-up sheet consent statement, confirmation text) live in `src/lib/config.ts`; see "SMS opt-in flow" in `README.md`. See `README.md` for commands and structure.
 
 ## Rules
 

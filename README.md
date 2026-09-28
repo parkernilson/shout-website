@@ -42,7 +42,16 @@ If you change the sign-up wording, update the printed sheet, `config.ts`, and th
 
 ## Deployment
 
-Uses `@sveltejs/adapter-static`. `npm run build` writes a static site to `build/` (`index.html`, `privacy.html`, `terms.html`, plus `200.html` as the SPA fallback) that can be served from any static host.
+Uses `@sveltejs/adapter-static`. `npm run build` writes a static site to `build/` (`index.html`, `privacy.html`, `terms.html`, plus `404.html` as the SPA fallback).
+
+The site is hosted on **GitHub Pages** at <https://shout.parkernilson.dev>. `.github/workflows/deploy.yml` runs `check`, `lint`, and `build` on every push to `main` (or a manual run) and deploys `build/` with GitHub Actions.
+
+One-time setup:
+
+1. In the repo, go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
+2. Under **Settings → Pages → Custom domain**, enter `shout.parkernilson.dev` and save (`static/CNAME` holds the same value). Once the certificate is issued, enable **Enforce HTTPS**.
+3. At your DNS provider, add a `CNAME` record: `shout` → `parkernilson.github.io`.
+4. Optional but recommended: verify `parkernilson.dev` under your GitHub account's **Settings → Pages** to prevent domain takeover.
 
 ## AI agents
 
