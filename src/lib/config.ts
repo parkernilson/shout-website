@@ -1,7 +1,8 @@
 // Site-wide details shown on the landing page, privacy policy, and terms.
 export const site = {
 	name: 'Shout',
-	operator: 'Parker Nilson',
+	// Operator's full legal name; the footer's "operated by" line links it to the Shout brand.
+	operator: 'Parker Todd Nilson',
 	url: 'shout.parkernilson.dev',
 	// Toll-free SMS origination number (AWS End User Messaging, two-way enabled).
 	phoneNumber: '+1 (844) 493-3651',

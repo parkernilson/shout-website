@@ -23,8 +23,10 @@
 	</main>
 
 	<footer class="border-t border-gray-200 py-6 text-sm text-gray-500">
-		{site.name} is a free, non-commercial service run by {site.operator}. Reply STOP to opt out,
-		HELP for help. Contact:
-		<a href="mailto:{site.contactEmail}" class="underline">{site.contactEmail}</a>
+		<p class="font-medium text-gray-700">{site.name} is operated by {site.operator}.</p>
+		<p class="mt-1">
+			{site.name} is a free, non-commercial service. Reply STOP to opt out, HELP for help. Contact:
+			<a href="mailto:{site.contactEmail}" class="underline">{site.contactEmail}</a>
+		</p>
 	</footer>
 </div>

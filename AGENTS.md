@@ -11,6 +11,7 @@ Shout is a simple SMS announcement service for the local community: users opt in
 - **Keep docs current.** Whenever you make a change, update `AGENTS.md`, `README.md`, and any other relevant documentation in the same change so they reflect the new state of the project.
 - Keep things simple; this is a small project.
 - Before finishing, run `npm run check` and `npm run lint` (use `npm run format` to fix formatting).
+- The site is branded **Shout**. Keep the footer line "Shout is operated by Parker Todd Nilson" (`site.name` / `site.operator`); it links the operator's legal name to the brand.
 - Never remove or obscure the STOP opt-out instructions; clear opt-in/opt-out wording is required for SMS compliance.
 - The dashboard is a public browser client: never put client secrets or AWS credentials in the site. The Cognito IDs, domain, and API URL are public config in `src/lib/config.ts`. Keep auth changes (callback URLs, CORS origins, API routes) in sync with `shout-cdk`, and update both repos' docs.
 - The privacy policy and terms back the AWS toll-free number verification. Keep the required disclosures: opt-in methods (paper/online sign-up sheet or verbal script, each followed by the YES confirmation), message frequency, "message and data rates may apply", HELP/STOP instructions, contact info, and the statement that mobile/opt-in data is not shared with third parties for marketing.

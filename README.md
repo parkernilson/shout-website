@@ -27,7 +27,7 @@ npm run format   # auto-format
 - `src/routes/privacy/` — privacy policy
 - `src/routes/terms/` — terms and conditions
 - `src/routes/+layout.svelte` — shared header/footer; `+layout.ts` disables SSR (client-side rendered) and prerenders each route's HTML shell
-- `src/lib/config.ts` — site details (operator, toll-free number, contact email, confirm keyword, message frequency, last-updated date), plus the sign-up sheet consent statement (`signupConsent`), the verbal sign-up script (`verbalScript`), and the confirmation text (`confirmationMessage`). Contact info on the site is email-only; never add a personal phone number.
+- `src/lib/config.ts` — site details (operator's full legal name, toll-free number, contact email, confirm keyword, message frequency, last-updated date), plus the sign-up sheet consent statement (`signupConsent`), the verbal sign-up script (`verbalScript`), and the confirmation text (`confirmationMessage`). Contact info on the site is email-only; never add a personal phone number.
 
 ## SMS opt-in flow
 
