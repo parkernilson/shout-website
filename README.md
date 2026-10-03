@@ -42,6 +42,22 @@ If you change the sign-up wording, update the paper and online sheets, the verba
 
 - `static/` — static assets
 
+## Admin dashboard (planned)
+
+A signed-in admin dashboard will let the operator manage channels, see each channel's receivers (name, phone number, status), manually add or remove numbers (adding a number that has never been invited sends it the `confirmationMessage` invitation), and send announcements to a channel's subscribed receivers. The AWS side (Cognito, API Gateway, Lambdas, DynamoDB) is defined in the sibling `shout-cdk` repo; see its `README.md`.
+
+- **Auth:** Cognito user pool with self-sign-up turned off; admin users are created by hand. Sign-in uses Cognito **managed login** with an app client that has **no client secret**, using the **authorization code flow with PKCE** (scopes `openid`, `email`).
+- **Callback / sign-out URLs:** `https://shout.parkernilson.dev/` in production and `http://localhost:5173/` for development (`npm run dev`). Because the callback is the site root, Amplify must be configured in the root layout so the redirect is handled on `/`.
+- **Library:** the `aws-amplify` package (not installed yet), configured once with `Amplify.configure()`:
+  - `Auth.Cognito`: `userPoolId`, `userPoolClientId`, and `loginWith.oauth` with the Cognito `domain`, `scopes`, `redirectSignIn`/`redirectSignOut` set to the URLs above, and `responseType: 'code'`.
+  - `API.REST`: the HTTP API as a named endpoint (`endpoint` = API URL, `region: 'us-west-1'`).
+  - Library options (second argument): `API.REST.headers`, an async function that returns `{ Authorization: <access token> }` from `fetchAuthSession()`. This attaches the token to every API call.
+
+  Use `signInWithRedirect()`, `signOut()`, `getCurrentUser()`, and `fetchAuthSession()` from `aws-amplify/auth`, and `get`/`post`/`put`/`del` from `aws-amplify/api` for API calls.
+
+- **API calls:** the dashboard Lambdas sit behind an **API Gateway HTTP API** with a **JWT authorizer** on the user pool. Make all API calls through `aws-amplify/api` so the `headers` function adds the token. Without that function, Amplify tries to sign requests with IAM (Cognito identity pool) credentials, which this setup doesn't use, so the calls would fail. CORS on the API allows `https://shout.parkernilson.dev` (and `http://localhost:5173` for development).
+- **Config:** the user pool ID, app client ID, Cognito domain, and API URL come from the `shout-cdk` stack outputs and belong in `src/lib/config.ts`. They are public identifiers, not secrets; never put AWS credentials or secrets in the site.
+
 ## Deployment
 
 Uses `@sveltejs/adapter-static`. `npm run build` writes a static site to `build/` (`index.html`, `privacy.html`, `terms.html`, plus `404.html` as the SPA fallback).

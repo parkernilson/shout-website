@@ -4,7 +4,7 @@ Guidance for AI agents working in this repo.
 
 ## Project
 
-Shout is a simple SMS announcement service for the local community: users opt in via a paper or online sign-up sheet or verbally in person, confirm by replying YES to a confirmation text (two-way SMS on AWS), and opt out by texting STOP. This repo is its SvelteKit website (Svelte 5, TypeScript, Tailwind CSS 4). The site is client-side rendered (`ssr = false`) and built with `adapter-static` and deployed to GitHub Pages (custom domain `shout.parkernilson.dev`) by `.github/workflows/deploy.yml` on every push to `main`. Pages: landing (`/`), `/privacy`, `/terms`. Shared details (toll-free number, contact email, confirm keyword, sign-up sheet consent statement, verbal sign-up script, confirmation text) live in `src/lib/config.ts`; see "SMS opt-in flow" in `README.md`. See `README.md` for commands and structure.
+Shout is a simple SMS announcement service for the local community: users opt in via a paper or online sign-up sheet or verbally in person, confirm by replying YES to a confirmation text (two-way SMS on AWS), and opt out by texting STOP. This repo is its SvelteKit website (Svelte 5, TypeScript, Tailwind CSS 4). The site is client-side rendered (`ssr = false`) and built with `adapter-static` and deployed to GitHub Pages (custom domain `shout.parkernilson.dev`) by `.github/workflows/deploy.yml` on every push to `main`. Pages: landing (`/`), `/privacy`, `/terms`. Shared details (toll-free number, contact email, confirm keyword, sign-up sheet consent statement, verbal sign-up script, confirmation text) live in `src/lib/config.ts`; see "SMS opt-in flow" in `README.md`. A Cognito-authenticated admin dashboard is planned (managed login, authorization code + PKCE via `aws-amplify/auth`, API calls via `aws-amplify/api` with an `Authorization` header set in `Amplify.configure`, callback `https://shout.parkernilson.dev/` and `http://localhost:5173/`, calling an API Gateway HTTP API with a JWT authorizer); see "Admin dashboard" in `README.md`. Its AWS backend is in the sibling `shout-cdk` repo. See `README.md` for commands and structure.
 
 ## Rules
 
@@ -12,6 +12,7 @@ Shout is a simple SMS announcement service for the local community: users opt in
 - Keep things simple; this is a small project.
 - Before finishing, run `npm run check` and `npm run lint` (use `npm run format` to fix formatting).
 - Never remove or obscure the STOP opt-out instructions; clear opt-in/opt-out wording is required for SMS compliance.
+- The dashboard is a public browser client: never put client secrets or AWS credentials in the site. The Cognito IDs, domain, and API URL are public config in `src/lib/config.ts`. Keep auth changes (callback URLs, CORS origins, API routes) in sync with `shout-cdk`, and update both repos' docs.
 - The privacy policy and terms back the AWS toll-free number verification. Keep the required disclosures: opt-in methods (paper/online sign-up sheet or verbal script, each followed by the YES confirmation), message frequency, "message and data rates may apply", HELP/STOP instructions, contact info, and the statement that mobile/opt-in data is not shared with third parties for marketing.
 
 # Tools
